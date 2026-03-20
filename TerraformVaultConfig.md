@@ -170,3 +170,6 @@ resource "azurerm_linux_virtual_machine" "exampleVM" {
   }
 }
 ```
+
+# AZURE Secret Engine Documentation
+Documentation url: https://developer.hashicorp.com/vault/tutorials/secrets-management/azure-secrets
