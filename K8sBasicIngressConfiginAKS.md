@@ -91,7 +91,14 @@ spec:
                 number: 80
 ```
 # 🎉 Now we have configured a basic ingress controller for our application 
-- Summary in three simple steps:
-    1. Install the ingress controller in AKS cluster
-    2. Create the deployments and services for the the deployments in ClusterIP type.
-    3. configure the ingress for your deployments and service.
+- Summary :
+    
+    1. User requests my-app.example.com.
+
+    2. Azure Load Balancer receives traffic on the Public IP.
+
+    3. NGINX Ingress Controller reads the "Host" header.
+
+    4. Ingress Rules map the host to the ClusterIP Service.
+
+    5. ClusterIP Service forwards traffic to the Application Pods.
