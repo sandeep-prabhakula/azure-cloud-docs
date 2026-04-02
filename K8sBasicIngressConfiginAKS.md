@@ -51,3 +51,47 @@
 
 - In Simple Terms
     You are telling Kubernetes: "Go get the NGINX software, put it in a room called 'ingress-basic', and tell the Azure Load Balancer that if it wants to check if we're awake, it should knock on the door labeled '/healthz'."
+
+# 5. Create the application and Services
+- Create deployments.
+- Create the services for the deployment of type ClusterIP.
+
+# 6. Create an Ingress configuration
+- Sample ingress config
+- use ".nip.io" to convert an IP to a host
+- specify the ```ingressClassName:nginx``` or else application throw ```404```.
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+    
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: 40.125.105.92.nip.io #my-app.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-service # The Service exposing the pod
+            port:
+              number: 80 # The port the Service listens on   
+  - host: my-test.example.com
+    http: 
+      paths:  
+        - path: /
+          pathType: Prefix 
+          backend:
+            service:
+              name: my-service-2 # should match the service name which is exposing the pod
+              port:
+                number: 80
+```
+# 🎉 Now we have configured a basic ingress controller for our application 
+- Summary in three simple steps:
+    1. Install the ingress controller in AKS cluster
+    2. Create the deployments and services for the the deployments in ClusterIP type.
+    3. configure the ingress for your deployments and service.
