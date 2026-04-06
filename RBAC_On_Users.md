@@ -24,10 +24,15 @@ az aks update \
 
 --aad-tenant-id <your-tenant-id>
 ```
-## 4. Add admin with Cluster Admin role
+## 4. Add admin with Cluster Admin role and other user with User Role
+### 4.a Create Access to admin
 - This is the mandatory step else even admin cannot do any of the operations.
 - ```Azure Kubernetes Service RBAC Cluster Admin```
 - Update your IAM of the AKS cluster
+### 4.b Create Access to the Users
+- This is the mandatory step to provide access to develops
+- ```Azure Kubernetes Service Cluster User Role```
+- Update IAM of the Cluster.
 
 ## 5. Create roles
 ```yaml
